@@ -355,6 +355,33 @@ public:
     }
 
     /**
+     * @brief copy assignment
+     *
+     * @detais Corrently perform a copy using `=` operator
+     */
+    Hashtable& operator=(const Hashtable& h) {
+      // Guard self assignment
+      if (this == &h) {
+        return *this;
+      }
+
+      TABLE_SIZE = h.TABLE_SIZE;
+      count = h.count;
+      loadFactorThreshold = h.loadFactorThreshold;
+      hashFunction = h.hashFunction;
+
+      // Recreate the table
+      clear();
+      delete[] table;
+      table = new Entry*[TABLE_SIZE]();
+      for (int i = 0; i < count; i++) {
+        table[i] = h.table[i];
+      }
+
+      return *this;
+    }
+
+    /**
      * @brief Constructor
      * @details This constructor creates a hash table with the specified initial capacity and load factor.
      *
