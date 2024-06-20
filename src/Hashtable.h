@@ -349,7 +349,7 @@ public:
 
       // We need to copy the table manually
       table = new Entry*[TABLE_SIZE]();
-      for (int i = 0; i < count; i++) {
+      for (int i = 0; i < TABLE_SIZE; i++) {
         table[i] = h.table[i];
       }
     }
@@ -374,7 +374,7 @@ public:
       clear();
       delete[] table;
       table = new Entry*[TABLE_SIZE]();
-      for (int i = 0; i < count; i++) {
+      for (int i = 0; i < TABLE_SIZE; i++) {
         table[i] = h.table[i];
       }
 
