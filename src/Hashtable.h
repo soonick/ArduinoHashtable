@@ -349,8 +349,11 @@ public:
 
       // We need to copy the table manually
       table = new Entry*[TABLE_SIZE]();
-      for (int i = 0; i < TABLE_SIZE; i++) {
-        table[i] = h.table[i];
+      SimpleVector<K> keys = h.keys();
+      for (unsigned int i = 0; i < keys.elements(); i++) {
+        K key = keys[i];
+        V value = *h.get(key);
+        put(key, value);
       }
     }
 
@@ -374,8 +377,11 @@ public:
       clear();
       delete[] table;
       table = new Entry*[TABLE_SIZE]();
-      for (int i = 0; i < TABLE_SIZE; i++) {
-        table[i] = h.table[i];
+      SimpleVector<K> keys = h.keys();
+      for (unsigned int i = 0; i < keys.elements(); i++) {
+        K key = keys[i];
+        V value = *h.get(key);
+        put(key, value);
       }
 
       return *this;
